@@ -86,9 +86,11 @@ namespace Zp
                             {
                                 case string a when a.Contains("Расчетный листок за"):
                                     pd = new ParsedDoc();
-                                    pd.Date = !string.IsNullOrEmpty(str) ? str.Substring(str.IndexOf("Расчетный листок за") + "Расчетный листок за".Length).Trim() : "Null";
+                                    pd.Date = !string.IsNullOrEmpty(str) ? str.Substring(str.IndexOf("Расчетный листок за") 
+                                        + "Расчетный листок за".Length).Trim() : "Null";
                                     A1topLeftCornerCoordinate = ((Excel.Range)range.Rows.Cells[r, c]).Address;
-                                    pd.TopLeftCoordinate = ((Excel.Range)range.Rows.Cells[r, c]).Address[true, true, Excel.XlReferenceStyle.xlR1C1, false];
+                                    pd.TopLeftCoordinate = ((Excel.Range)range.Rows.Cells[r, c])
+                                        .Address[true, true, Excel.XlReferenceStyle.xlR1C1, false];
                                     break;
                                 case string f when f.Contains("Лицевой"):
                                     pd.PersonalAccount = !string.IsNullOrEmpty(str) ? str.Substring(str.IndexOf(':') + 1).Trim() : "Null";
@@ -107,19 +109,23 @@ namespace Zp
                                     str = Convert.ToString(((Excel.Range)range.Rows.Cells[r, c + 6]).Value2);
                                     pd.TotalSummOrganizationDebt = !string.IsNullOrEmpty(str) ? str.Trim() : "Null";
                                     pdL.Add(pd);
-                                    pd.BotRightCoordinate = ((Excel.Range)range.Rows.Cells[r, c + 6]).Address[true, true, Excel.XlReferenceStyle.xlR1C1, false];
+                                    pd.BotRightCoordinate = ((Excel.Range)range.Rows.Cells[r, c + 6])
+                                        .Address[true, true, Excel.XlReferenceStyle.xlR1C1, false];
                                     A1botRightCornerCoordinate = ((Excel.Range)range.Rows.Cells[r + 1, c + 7]).Address;
 
                                     switch (ef)
                                     {
                                         case ExportFormat.Png:
-                                            ExportRangeToPngHighResolutionWithRetryLogic(rSheet.Range[A1topLeftCornerCoordinate, A1botRightCornerCoordinate], rSheet, saveDir, pd, maxiumRetryAttempts);
+                                            ExportRangeToPngHighResolutionWithRetryLogic(rSheet.Range[A1topLeftCornerCoordinate, 
+                                                A1botRightCornerCoordinate], rSheet, saveDir, pd, maxiumRetryAttempts);
                                             break;
                                         case ExportFormat.Pdf:
-                                            ExportRangeToPdfWithRetryLogic(rSheet.Range[A1topLeftCornerCoordinate, A1botRightCornerCoordinate], rSheet, saveDir, pd, maxiumRetryAttempts);
+                                            ExportRangeToPdfWithRetryLogic(rSheet.Range[A1topLeftCornerCoordinate, 
+                                                A1botRightCornerCoordinate], rSheet, saveDir, pd, maxiumRetryAttempts);
                                             break;
                                         default:
-                                            ExportRangeToPngHighResolutionWithRetryLogic(rSheet.Range[A1topLeftCornerCoordinate, A1botRightCornerCoordinate], rSheet, saveDir, pd, maxiumRetryAttempts);
+                                            ExportRangeToPngHighResolutionWithRetryLogic(rSheet.Range[A1topLeftCornerCoordinate, 
+                                                A1botRightCornerCoordinate], rSheet, saveDir, pd, maxiumRetryAttempts);
                                             break;
                                     }
 

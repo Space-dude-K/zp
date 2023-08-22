@@ -106,7 +106,8 @@ namespace Zp
                 }
                 else if (!IsDirectoryWritable(textBoxStr))
                 {
-                    EventHandler eh = new EventHandler((sender, e) => ShowToolTip((Control)sender, textBoxStr + " write access error, check privileges!", 100, 8));
+                    EventHandler eh = new EventHandler((sender, e) => ShowToolTip((Control)sender, 
+                        textBoxStr + " write access error, check privileges!", 100, 8));
 
                     x.BackColor = Color.Red;
                     x.MouseEnter += eh;

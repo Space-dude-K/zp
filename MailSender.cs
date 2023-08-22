@@ -66,22 +66,6 @@ namespace Zp
                 // Add the file attachment to this e-mail message.
                 message.Attachments.Add(data);
 
-                /*
-                // Add delivery notifications headers.
-                bool isDeliveryNotificationsEnabled = !string.IsNullOrEmpty(cfg.GetSection("emailSettings")["deliveryNotifications"]) && bool.Parse(cfg.GetSection("emailSettings")["deliveryNotifications"]);
-
-                if(isDeliveryNotificationsEnabled)
-                {
-                    message.DeliveryNotificationOptions = DeliveryNotificationOptions.OnSuccess | DeliveryNotificationOptions.OnFailure;
-
-                    message.Headers.Add("Disposition-Notification-To", senderEmail);
-                    message.Headers.Add("Return-Receipt-To", senderEmail);
-                }
-                
-                //message.hea("Return-Receipt-To", "\"John Doe\" <johnDoe@blahblahblah.com>");
-                //message.AddHeaderField("Disposition-Notification-To", "\"John Doe\" <johnDoe@blahblahblah.com>");
-                */
-
                 var smtpClient = new SmtpClient(smtpAddress)
                 {
                     Port = int.Parse(smtpPort),
